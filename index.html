@@ -38,6 +38,13 @@ section#hero>*:not(.sun):not(.miami){position:relative;z-index:2}
 .ch .nm{position:absolute;bottom:2vh;left:1vw;font:400 clamp(50px,8vw,190px)/1 var(--d);text-transform:uppercase;mix-blend-mode:screen;opacity:.9;color:var(--cyan);text-shadow:0 0 .3em rgba(39,230,255,.5)}
 .wm{font:400 clamp(70px,14vw,330px)/.9 var(--d);letter-spacing:.02em}.wm.nofile{display:none}
 .logo.nofile{display:none}.logo:not(.nofile)~.wm{display:none}
+.wmk{position:absolute;top:3vh;left:3vw;z-index:5;pointer-events:none}
+.wmk img{height:7vh;filter:drop-shadow(0 0 .6em rgba(255,45,135,.7))}
+.wmk b{font:400 clamp(26px,3vw,70px)/1 var(--d);color:#fff;text-shadow:0 0 .4em var(--pink);letter-spacing:.03em}
+.wmk.nofile img{display:none}.wmk:not(.nofile) b{display:none}
+.wmk.big{top:auto;left:50%;bottom:5vh;translate:-50% 0}.wmk.big img{height:16vh}.wmk.big b{font-size:clamp(50px,7vw,170px)}
+#sim{font:400 clamp(60px,9vw,210px)/1 var(--d);background:linear-gradient(90deg,var(--cyan),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+.bar.alt{background:linear-gradient(90deg,var(--cyan),var(--violet))}
 /* clips */
 .clip{padding:0;background:#000}
 .clip video,.clip .ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
@@ -89,7 +96,6 @@ input[type=range]{width:min(80vw,1400px);accent-color:var(--pink);height:3vh;mar
 #modal div{max-width:34em;border:1px solid var(--pink);border-radius:1.2vw;padding:3vw;background:#0b0010;box-shadow:0 0 5em rgba(255,45,135,.5)}
 #modal h3{font:400 2.4em var(--d);text-transform:uppercase;margin-bottom:.3em;color:var(--pink)}
 .fine{font-size:.7em;opacity:.5;margin-top:4vh;max-width:60em}
-#fs{position:fixed;top:2vh;right:2vw;z-index:40;background:rgba(0,0,0,.5);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:.4em;padding:.2em .7em;font:inherit;cursor:pointer;opacity:.6}
 #prog{position:fixed;top:0;left:0;height:.5vh;background:linear-gradient(90deg,var(--cyan),var(--pink),var(--orange));z-index:60;width:0}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01s!important;scroll-behavior:auto}}
 @media (max-width:700px){.row{grid-template-columns:1fr}.sun{width:90vw}}
@@ -97,7 +103,6 @@ input[type=range]{width:min(80vw,1400px);accent-color:var(--pink);height:3vh;mar
 </head>
 <body>
 <div id="prog"></div>
-<button id="fs" aria-label="Plein écran">Plein écran (F)</button>
 
 <section id="hero">
   <div class="sun" aria-hidden="true"></div>
@@ -164,6 +169,38 @@ input[type=range]{width:min(80vw,1400px);accent-color:var(--pink);height:3vh;mar
   <p class="fine rv">Estimations issues de la presse et d’analystes (Sensor Tower pour les précommandes). Rockstar et Take-Two n’ont pas publié de chiffre officiel de précommandes.</p>
 </section>
 
+<section id="hype">
+  <h2 class="rv">Un monde entier <em>qui attend</em></h2>
+  <div class="chart rv">
+    <p class="tag">Années d’attente depuis l’épisode précédent</p>
+    <div class="row"><span>GTA V (après GTA IV)</span><div class="bar alt" style="--w:38%"><em>5 ans</em></div></div>
+    <div class="row"><span>GTA VI (après GTA V)</span><div class="bar" style="--w:100%"><em>13 ans</em></div></div>
+  </div>
+  <div class="grid" style="margin-top:6vh">
+    <button class="stat rv" data-info="conges"><b data-n="12.5" data-pre="~" data-suf=" M">0</b><span>d’Américains prévoient de s’absenter ou d’aménager leur journée</span><i>Touche pour en savoir plus</i></button>
+    <button class="stat rv" data-info="pto"><b data-n="17" data-pre="+" data-suf=" %">0</b><span>de demandes de congés le jour du lancement, jusqu’à +17 % selon les plateformes RH</span><i>Touche pour en savoir plus</i></button>
+    <button class="stat rv" data-info="genz"><b data-n="13" data-suf=" %">0</b><span>des 18-27 ans prévoient de prendre congé, contre 8 % pour l’ensemble</span><i>Touche pour en savoir plus</i></button>
+    <button class="stat rv" data-info="eco"><b data-n="1" data-pre="~" data-suf=" Md$">0</b><span>de productivité perdue aux États-Unis le 19 novembre, selon des économistes</span><i>Touche pour en savoir plus</i></button>
+  </div>
+  <div class="chart rv" style="margin-top:6vh">
+    <p class="tag">Part de joueurs qui comptent prendre congé (enquête américaine)</p>
+    <div class="row"><span>Génération Z</span><div class="bar" style="--w:13%"><em>13 %</em></div></div>
+    <div class="row"><span>Hommes</span><div class="bar alt" style="--w:9%"><em>9 %</em></div></div>
+    <div class="row"><span>Femmes</span><div class="bar alt" style="--w:7%"><em>7 %</em></div></div>
+    <div class="row"><span>Ensemble des joueurs</span><div class="bar alt" style="--w:8%"><em>8 %</em></div></div>
+  </div>
+  <p class="lead rv" style="margin-top:5vh">Des entreprises offrent même une journée pour y jouer, comme Pocketpair (Palworld) ou Logitech. Génération Z, hommes, femmes : tout le monde s’y met.</p>
+</section>
+
+<section id="sim-s">
+  <h2 class="rv">Combien seront <em>connectés à minuit ?</em></h2>
+  <p class="lead rv">Aucun chiffre officiel n’existe. Voici un scénario : fais glisser la part des précommandeurs qui lancent le jeu dans la première heure.</p>
+  <input class="rv" id="pc" type="range" min="10" max="100" step="5" value="50" aria-label="Part des précommandeurs connectés">
+  <div class="tag" style="margin-top:0"><span id="pcv">50</span> % des ~4,6 M de précommandes numériques estimées</div>
+  <div id="sim">2,3 M</div>
+  <p class="fine">Scénario illustratif basé sur une estimation de précommandes (Sensor Tower). Il ne compte ni les copies physiques ni les achats le jour même.</p>
+</section>
+
 <section id="why">
   <h2 class="rv">7 raisons de jouer <em>à minuit</em></h2>
   <div class="reasons">
@@ -217,6 +254,10 @@ const INFO={
  budget:["Un budget hors norme","Les estimations de la presse dépassent le milliard de dollars pour le développement. Rockstar n’a pas publié de chiffre officiel."],
  gtav:["GTA V, le mètre étalon","GTA V a dépassé les 215 millions d’exemplaires vendus, selon Take-Two. GTA VI part avec cet objectif à battre."],
  trailer:["Des records de vues","La bande-annonce 1 a atteint environ 93 millions de vues en 24 h sur YouTube, la 2 environ 69 millions. Elles figurent parmi les vidéos les plus vues de l’histoire de la plateforme."],
+ conges:["Des millions de congés prévus","Une enquête américaine relayée par la presse (PCMag) estime à environ 12,5 millions le nombre de joueurs qui comptent s’absenter ou modifier leurs horaires pour le lancement. Une autre étude parle de 10 % de joueurs en emploi qui sécheraient le travail, et de 30 % qui y songent."],
+ pto:["Les demandes de congés explosent","Des plateformes RH relevées par la presse mesurent une hausse des demandes de congés de 9 à 17 % pour le jour du lancement. Un jeudi, prendre aussi le vendredi donne un week-end de quatre jours."],
+ genz:["Toutes les générations, surtout les plus jeunes","Dans l’enquête, 13 % des Gen Z comptent prendre congé contre 8 % de l’ensemble. L’écart entre hommes (9 %) et femmes (7 %) est faible : l’attente touche tous les profils."],
+ eco:["Un impact économique","Des économistes estiment à environ 1 milliard de dollars la perte de productivité aux États-Unis le 19 novembre, à cause des absences. C’est une estimation, pas un chiffre officiel."],
  preco:["Précommandes : une estimation","Sensor Tower estime entre 4,4 et 4,8 millions de précommandes numériques fin août 2026, environ 77 % sur PS5. Des analystes projetaient aussi plus d’un milliard de dollars de précommandes. Ce ne sont pas des chiffres officiels."]
 };
 const NIGHT=[
@@ -250,6 +291,12 @@ $$("[data-clip]").forEach(s=>{vo.observe(s);const v=s.querySelector("video");
  v.addEventListener("error",()=>s.classList.add("nofile"))});
 
 $$("img.logo,.ch img").forEach(i=>{const f=()=>(i.closest(".ch")||i).classList.add("nofile");i.addEventListener("error",f);if(i.complete&&!i.naturalWidth)f()});
+
+$$("section").forEach(sc=>{if(sc.id==="hero")return;const w=document.createElement("div");w.className="wmk"+(sc.id==="end"?" big":"");
+ w.innerHTML='<img src="assets/logo.png" alt=""><b>GTA VI</b>';sc.prepend(w);const i=w.querySelector("img");
+ const f=()=>w.classList.add("nofile");i.addEventListener("error",f);if(i.complete&&!i.naturalWidth)f()});
+const pc=$("#pc");function sim(){$("#pcv").textContent=pc.value;$("#sim").textContent=(4.6*pc.value/100).toFixed(1).replace(".",",")+" M"}
+pc.oninput=sim;sim();
 // popups
 const M=$("#modal");
 $$(".stat").forEach(b=>b.onclick=()=>{const i=INFO[b.dataset.info];$("#mt").textContent=i[0];$("#mx").textContent=i[1];M.classList.add("open");$("#mc").focus()});
@@ -261,7 +308,6 @@ sl.oninput=night;night();
 let c=0;$("#vote").onclick=()=>{c++;$("#vc").textContent=c};
 // plein écran + clavier + progression
 const fs=()=>document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();
-$("#fs").onclick=fs;
 addEventListener("keydown",e=>{
  if(e.key==="Escape")close();
  if(e.key==="f"||e.key==="F")fs();
