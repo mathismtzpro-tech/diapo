@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GTA VI – Minuit, pas demain</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--pink:#ff2d87;--orange:#ff8a1f;--cyan:#27e6ff;--violet:#7a2cff;--ink:#000;--soft:#f4ecff;
+--d:'Anton',Impact,'Arial Narrow Bold',sans-serif;--b:'Barlow Condensed','Arial Narrow',sans-serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-snap-type:y proximity;scroll-behavior:smooth;background:#000}
+body{background:#000;color:var(--soft);font:500 clamp(18px,1.55vw,34px)/1.35 var(--b);overflow-x:hidden}
+section{min-height:100vh;position:relative;display:flex;flex-direction:column;justify-content:center;padding:8vh 7vw;scroll-snap-align:start;overflow:hidden}
+h1,h2,.big{font-family:var(--d);font-weight:400;line-height:.92;text-transform:uppercase;letter-spacing:.01em}
+h1{font-size:clamp(64px,13vw,300px);background:linear-gradient(180deg,#fff 0%,#ffd1a6 30%,var(--orange) 55%,var(--pink) 85%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 .25em rgba(255,45,135,.55))}
+h2{font-size:clamp(44px,7.5vw,170px);margin-bottom:.4em}
+h2 em{font-style:normal;color:var(--pink);text-shadow:0 0 .4em rgba(255,45,135,.7)}
+p.lead{max-width:34em;opacity:.85}
+.sun{position:absolute;right:-8vw;top:50%;width:52vw;aspect-ratio:1;transform:translateY(-55%);border-radius:50%;background:linear-gradient(180deg,#ffe36e,var(--orange) 40%,var(--pink) 75%,var(--violet));opacity:.9;filter:blur(.5px);
+-webkit-mask:repeating-linear-gradient(180deg,#000 0 7.5%,transparent 7.5% 9%);mask:repeating-linear-gradient(180deg,#000 0 7.5%,transparent 7.5% 9%);-webkit-mask-composite:source-over}
+.sun::after{content:"";position:absolute;inset:0}
+.cd{display:flex;gap:2.2vw;margin-top:5vh;position:relative}
+.cd div{text-align:center}.cd b{display:block;font:400 clamp(48px,8vw,190px)/1 var(--d);color:var(--cyan);text-shadow:0 0 .35em rgba(39,230,255,.6);font-variant-numeric:tabular-nums}
+.cd small{font-size:.8em;opacity:.7}
+.tag{font-size:.9em;opacity:.75;margin-bottom:2vh;position:relative}
+.hint{position:absolute;bottom:3vh;left:50%;translate:-50% 0;opacity:.6;animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{50%{translate:-50% 10px}}
+
+.miami{position:absolute;inset:auto 0 0 0;width:100%;height:62vh;z-index:1;pointer-events:none}
+section#hero>*:not(.sun):not(.miami){position:relative;z-index:2}
+.logo{display:block;width:min(46vw,900px);margin-bottom:2vh;filter:drop-shadow(0 0 1.2em rgba(255,45,135,.7))}
+.chars{display:grid;grid-template-columns:1fr 1fr;gap:4vw;align-items:end;margin-top:2vh}
+.ch{position:relative;min-height:62vh;display:flex;align-items:flex-end;justify-content:center;border-bottom:.3vh solid var(--pink)}
+.ch img{max-height:70vh;max-width:100%;object-fit:contain;filter:drop-shadow(0 0 2em rgba(255,45,135,.5))}
+.ch.nofile img{display:none}.ch.nofile::before{content:attr(data-miss);position:absolute;top:2vh;font-size:.7em;opacity:.5}
+.ch .nm{position:absolute;bottom:2vh;left:1vw;font:400 clamp(50px,8vw,190px)/1 var(--d);text-transform:uppercase;mix-blend-mode:screen;opacity:.9;color:var(--cyan);text-shadow:0 0 .3em rgba(39,230,255,.5)}
+.wm{font:400 clamp(70px,14vw,330px)/.9 var(--d);letter-spacing:.02em}.wm.nofile{display:none}
+.logo.nofile{display:none}.logo:not(.nofile)~.wm{display:none}
+/* clips */
+.clip{padding:0;background:#000}
+.clip video,.clip .ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.clip .ph{display:none;background:radial-gradient(60% 80% at 70% 30%,var(--pink),transparent 70%),radial-gradient(70% 70% at 20% 80%,var(--violet),transparent 70%),linear-gradient(120deg,#12002b,#3a0a4f,#12002b);background-size:140% 140%;animation:drift 9s ease-in-out infinite alternate}
+.clip.nofile .ph{display:block}.clip.nofile video{display:none}
+@keyframes drift{to{background-position:100% 100%}}
+.clip .cap{position:absolute;left:7vw;bottom:9vh;z-index:2;max-width:70vw}
+.clip .cap .big{font-size:clamp(46px,8vw,190px);text-shadow:0 .05em .4em #000}
+.clip::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.75),transparent 45%),linear-gradient(180deg,rgba(0,0,0,.5),transparent 25%)}
+.miss{position:absolute;top:3vh;right:3vw;z-index:3;font-size:.7em;opacity:.55;display:none}.clip.nofile .miss{display:block}
+/* stats */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:3vw}
+.stat{border-left:.25vw solid var(--pink);padding:.4em 0 .4em 1.6vw;cursor:pointer;background:none;color:inherit;text-align:left;font:inherit;border-top:0;border-right:0;border-bottom:0}
+.stat:hover,.stat:focus-visible{border-color:var(--cyan);outline:none}
+.stat b{display:block;font:400 clamp(60px,9vw,210px)/1 var(--d);background:linear-gradient(90deg,var(--orange),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{opacity:.85}.stat i{font-style:normal;color:var(--cyan);font-size:.75em;display:block;margin-top:.3em}
+/* reveal */
+.rv{opacity:0;transform:translateY(5vh) scale(.98);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.on{opacity:1;transform:none}
+.rv:nth-child(2){transition-delay:.12s}.rv:nth-child(3){transition-delay:.24s}.rv:nth-child(4){transition-delay:.36s}.rv:nth-child(5){transition-delay:.48s}.rv:nth-child(6){transition-delay:.6s}
+/* charts */
+.chart{display:grid;gap:1.4vh;max-width:70vw}
+.row{display:grid;grid-template-columns:14em 1fr;align-items:center;gap:1.5vw}
+.bar{height:clamp(26px,4vh,70px);background:linear-gradient(90deg,var(--violet),var(--pink),var(--orange));width:0;border-radius:0 .5em .5em 0;transition:width 1.6s cubic-bezier(.2,.7,.2,1);box-shadow:0 0 2em rgba(255,45,135,.45);position:relative}
+.bar em{position:absolute;left:100%;margin-left:.6em;font-style:normal;font-family:var(--d);top:50%;translate:0 -50%;white-space:nowrap}
+.on .bar{width:var(--w)}
+.split{display:flex;height:clamp(40px,7vh,100px);max-width:70vw;margin-top:1vh;overflow:hidden;border-radius:.4em}
+.split div{display:flex;align-items:center;padding-left:1em;font-family:var(--d);width:0;transition:width 1.6s cubic-bezier(.2,.7,.2,1)}
+.on .split div:first-child{width:77%;background:var(--cyan);color:#000}.on .split div:last-child{width:23%;background:var(--violet)}
+/* reasons */
+.reasons{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr));gap:2.2vw}
+.rs{padding:2vw;border:1px solid rgba(255,255,255,.14);border-radius:1.2vw;background:linear-gradient(135deg,rgba(255,45,135,.12),rgba(122,44,255,.08))}
+.rs h3{font:400 1.9em/1 var(--d);text-transform:uppercase;margin-bottom:.4em;color:#fff}
+.rs p{opacity:.85}
+/* table */
+table{border-collapse:collapse;width:100%;max-width:85vw}
+th,td{padding:1.2vh 1.4vw;text-align:left;border-bottom:1px solid rgba(255,255,255,.14)}
+th{font:400 1.3em var(--d);text-transform:uppercase;color:var(--cyan)}
+td:nth-child(2){color:#fff}td:nth-child(3){opacity:.6}
+/* night */
+input[type=range]{width:min(80vw,1400px);accent-color:var(--pink);height:3vh;margin:3vh 0}
+#nt{font:400 clamp(60px,10vw,230px)/1 var(--d);color:var(--cyan);text-shadow:0 0 .3em rgba(39,230,255,.6)}
+#nx{min-height:3.2em;max-width:30em;transition:opacity .25s}
+/* cta */
+.btn{display:inline-block;margin-top:3vh;padding:.5em 1.2em;font:400 1.6em var(--d);text-transform:uppercase;background:linear-gradient(90deg,var(--pink),var(--orange));color:#000;border:0;border-radius:.3em;cursor:pointer;box-shadow:0 0 2em rgba(255,45,135,.6);transition:transform .15s}
+.btn:active{transform:scale(.96)}.btn:focus-visible{outline:3px solid var(--cyan)}
+#modal{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;place-items:center;z-index:50;padding:6vw}
+#modal.open{display:grid}
+#modal div{max-width:34em;border:1px solid var(--pink);border-radius:1.2vw;padding:3vw;background:#0b0010;box-shadow:0 0 5em rgba(255,45,135,.5)}
+#modal h3{font:400 2.4em var(--d);text-transform:uppercase;margin-bottom:.3em;color:var(--pink)}
+.fine{font-size:.7em;opacity:.5;margin-top:4vh;max-width:60em}
+#fs{position:fixed;top:2vh;right:2vw;z-index:40;background:rgba(0,0,0,.5);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:.4em;padding:.2em .7em;font:inherit;cursor:pointer;opacity:.6}
+#prog{position:fixed;top:0;left:0;height:.5vh;background:linear-gradient(90deg,var(--cyan),var(--pink),var(--orange));z-index:60;width:0}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01s!important;scroll-behavior:auto}}
+@media (max-width:700px){.row{grid-template-columns:1fr}.sun{width:90vw}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<button id="fs" aria-label="Plein écran">Plein écran (F)</button>
+
+<section id="hero">
+  <div class="sun" aria-hidden="true"></div>
+  <svg class="miami" viewBox="0 0 1600 500" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+<defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7a2cff" stop-opacity=".0"/><stop offset="1" stop-color="#ff2d87" stop-opacity=".55"/></linearGradient>
+<g id="palm"><path d="M0 0Q14 -110 -8 -230" stroke="#05000d" stroke-width="9" fill="none"/>
+<g transform="translate(-8 -230)" fill="none" stroke="#05000d" stroke-width="7" stroke-linecap="round"><path d="M0 0Q50 -45 120 -5"/><path d="M0 0Q-50 -45 -120 -5"/><path d="M0 0Q40 -70 90 -70"/><path d="M0 0Q-40 -70 -90 -70"/><path d="M0 0Q20 -30 70 40"/><path d="M0 0Q-20 -30 -70 40"/></g></g></defs>
+<rect y="150" width="1600" height="350" fill="url(#g1)"/>
+<g fill="#10002a" opacity=".92"><rect x="40" y="300" width="70" height="200"/><rect x="120" y="240" width="55" height="260"/><rect x="190" y="320" width="90" height="180"/><rect x="300" y="200" width="60" height="300"/><rect x="380" y="280" width="100" height="220"/><rect x="500" y="330" width="70" height="170"/><rect x="900" y="270" width="80" height="230"/><rect x="1000" y="210" width="60" height="290"/><rect x="1080" y="310" width="100" height="190"/><rect x="1200" y="250" width="70" height="250"/><rect x="1290" y="330" width="90" height="170"/><rect x="1400" y="230" width="60" height="270"/><rect x="1480" y="300" width="90" height="200"/></g>
+<g fill="#ff2d87" opacity=".55"><rect x="135" y="270" width="25" height="5"/><rect x="315" y="230" width="30" height="5"/><rect x="1015" y="240" width="28" height="5"/><rect x="1415" y="260" width="30" height="5"/></g>
+<rect y="455" width="1600" height="45" fill="#05000d"/>
+<g fill="none" stroke="#27e6ff" stroke-opacity=".35" stroke-width="1"><path d="M0 470H1600M0 485H1600"/></g>
+<use href="#palm" transform="translate(90 470) scale(1.5)"/><use href="#palm" transform="translate(300 470) scale(1)"/><use href="#palm" transform="translate(1320 470) scale(1.3)"/><use href="#palm" transform="translate(1520 470) scale(1.7)"/>
+</svg>
+  <p class="tag">Grand Theft Auto VI · PS5 et Xbox Series X|S</p>
+  <img class="logo" src="assets/logo.png" alt="Grand Theft Auto VI">
+  <p class="wm">Grand Theft Auto VI</p>
+  <h1>Minuit.<br>Pas demain.</h1>
+  <div class="cd" aria-live="off"><div><b id="cd-d">00</b><small>jours</small></div><div><b id="cd-h">00</b><small>heures</small></div><div><b id="cd-m">00</b><small>minutes</small></div><div><b id="cd-s">00</b><small>secondes</small></div></div>
+  <p class="tag" style="margin-top:2vh">avant le déblocage, jeudi 19 novembre 2026 à 00:00, heure de Paris</p>
+  <div class="hint">Fais défiler</div>
+</section>
+
+<section class="clip" data-clip>
+  <video src="clips/clip1.mp4" muted loop playsinline preload="auto"></video><div class="ph"></div>
+  <span class="miss">Dépose ton extrait ici : clips/clip1.mp4</span>
+  <div class="cap"><p class="big">Vice City ne dort jamais.</p></div>
+</section>
+
+<section id="stats">
+  <h2 class="rv">Le jeu le plus attendu <em>de la décennie</em></h2>
+  <div class="grid">
+    <button class="stat rv" data-info="budget"><b data-n="1" data-pre="+" data-suf=" Md$">0</b><span>de budget de développement estimé, du jamais vu pour un jeu</span><i>Touche pour en savoir plus</i></button>
+    <button class="stat rv" data-info="gtav"><b data-n="215" data-pre="+" data-suf=" M">0</b><span>d’exemplaires vendus par GTA V, le jeu qu’il doit dépasser</span><i>Touche pour en savoir plus</i></button>
+    <button class="stat rv" data-info="trailer"><b data-n="93" data-suf=" M">0</b><span>de vues en 24 h pour la bande-annonce 1 sur YouTube</span><i>Touche pour en savoir plus</i></button>
+    <button class="stat rv" data-info="preco"><b data-n="4.6" data-pre="~" data-suf=" M">0</b><span>de précommandes numériques estimées, ouvertes le 25 juin</span><i>Touche pour en savoir plus</i></button>
+  </div>
+</section>
+
+<section id="chars">
+  <h2 class="rv">Lucia <em>et</em> Jason</h2>
+  <p class="lead rv">Un duo, la Floride, et un monde qui ne pardonne rien.</p>
+  <div class="chars">
+    <div class="ch rv" data-miss="Dépose assets/lucia.png"><img src="assets/lucia.png" alt="Lucia"><span class="nm">Lucia</span></div>
+    <div class="ch rv" data-miss="Dépose assets/jason.png"><img src="assets/jason.png" alt="Jason"><span class="nm">Jason</span></div>
+  </div>
+</section>
+
+<section class="clip" data-clip>
+  <video src="clips/clip2.mp4" muted loop playsinline preload="auto"></video><div class="ph"></div>
+  <span class="miss">Dépose ton extrait ici : clips/clip2.mp4</span>
+  <div class="cap"><p class="big">Un monde qui<br>respire pour de vrai.</p></div>
+</section>
+
+<section id="charts">
+  <h2 class="rv">Les chiffres <em>parlent</em></h2>
+  <div class="chart rv" id="ch1">
+    <p class="tag">Vues en 24 h sur YouTube (millions)</p>
+    <div class="row"><span>Bande-annonce 1</span><div class="bar" style="--w:93%"><em>93 M</em></div></div>
+    <div class="row"><span>Bande-annonce 2</span><div class="bar" style="--w:69%"><em>69 M</em></div></div>
+    <p class="tag" style="margin-top:3vh">Précommandes estimées par console</p>
+    <div class="split"><div>PS5 ~77 %</div><div>Xbox ~23 %</div></div>
+  </div>
+  <p class="fine rv">Estimations issues de la presse et d’analystes (Sensor Tower pour les précommandes). Rockstar et Take-Two n’ont pas publié de chiffre officiel de précommandes.</p>
+</section>
+
+<section id="why">
+  <h2 class="rv">7 raisons de jouer <em>à minuit</em></h2>
+  <div class="reasons">
+    <div class="rs rv"><h3>Zéro spoil</h3><p>Dès le matin, clips, captures et fins se partagent partout. À minuit, tu découvres tout toi-même.</p></div>
+    <div class="rs rv"><h3>Le même moment pour tous</h3><p>Le jeu se débloque à minuit heure locale dans chaque région. Des millions de joueurs commencent ensemble.</p></div>
+    <div class="rs rv"><h3>Premier à voir</h3><p>Premiers lieux, premières missions, premières trouvailles : tu les vis avant que les réseaux n’en parlent.</p></div>
+    <div class="rs rv"><h3>Tout est prêt</h3><p>La précharge est faite. Il ne reste qu’à appuyer sur Jouer quand l’horloge passe minuit.</p></div>
+    <div class="rs rv"><h3>Une soirée mémorable</h3><p>Entre amis, sur grand écran, canapé et lumières éteintes. Ça ne se refait pas le lendemain.</p></div>
+    <div class="rs rv"><h3>Un jeu qui a patienté</h3><p>Annoncé en 2023, repoussé deux fois. Ajouter huit heures d’attente n’a aucun sens.</p></div>
+    <div class="rs rv"><h3>Le weekend devant toi</h3><p>Lancer jeudi à minuit, c’est gagner une nuit entière avant le vendredi.</p></div>
+  </div>
+</section>
+
+<section class="clip" data-clip>
+  <video src="clips/clip3.mp4" muted loop playsinline preload="auto"></video><div class="ph"></div>
+  <span class="miss">Dépose ton extrait ici : clips/clip3.mp4</span>
+  <div class="cap"><p class="big">Prêt quand<br>l’horloge sonne.</p></div>
+</section>
+
+<section id="night">
+  <h2 class="rv">La nuit <em>du 18 au 19</em></h2>
+  <p class="lead rv">Fais glisser l’horloge. Scénario illustratif de ce qui se passe pendant que tu dors.</p>
+  <input class="rv" id="sl" type="range" min="0" max="8" step="1" value="0" aria-label="Heure de la nuit">
+  <div id="nt">00:00</div>
+  <p id="nx"></p>
+</section>
+
+<section id="plan">
+  <h2 class="rv">Le plan <em>de la soirée</em></h2>
+  <table class="rv">
+    <tr><th>Quand</th><th>Quoi</th><th>Statut</th></tr>
+    <tr><td>25 juin 2026</td><td>Ouverture des précommandes</td><td>Fait</td></tr>
+    <tr><td>12 novembre 2026</td><td>Précharge numérique ouverte</td><td>Fait</td></tr>
+    <tr><td>Mercredi 18 novembre, soir</td><td>Console prête, canapé, snacks, amis</td><td>Ce soir</td></tr>
+    <tr><td>Jeudi 19 novembre, 00:00</td><td>Déblocage de GTA VI, heure locale</td><td>Le moment</td></tr>
+  </table>
+  <p class="fine rv">Rockstar confirme le 19 novembre 2026 sur PS5 et Xbox Series X|S, sans version PC au lancement. L’horaire de minuit vient des fiches des stores PlayStation et Xbox.</p>
+</section>
+
+<section id="end" style="text-align:center;align-items:center">
+  <h2 class="rv" style="font-size:clamp(60px,11vw,260px)">Minuit.<br><em>On y va.</em></h2>
+  <p class="lead rv">Qui prend sa journée du vendredi ?</p>
+  <button class="btn rv" id="vote">Je prends ma journée</button>
+  <p class="rv" style="margin-top:2vh"><b id="vc" style="font:400 3em var(--d);color:var(--cyan)">0</b> dans la salle</p>
+</section>
+
+<div id="modal" role="dialog" aria-modal="true"><div><h3 id="mt"></h3><p id="mx"></p><button class="btn" id="mc">Fermer</button></div></div>
+
+<script>
+const INFO={
+ budget:["Un budget hors norme","Les estimations de la presse dépassent le milliard de dollars pour le développement. Rockstar n’a pas publié de chiffre officiel."],
+ gtav:["GTA V, le mètre étalon","GTA V a dépassé les 215 millions d’exemplaires vendus, selon Take-Two. GTA VI part avec cet objectif à battre."],
+ trailer:["Des records de vues","La bande-annonce 1 a atteint environ 93 millions de vues en 24 h sur YouTube, la 2 environ 69 millions. Elles figurent parmi les vidéos les plus vues de l’histoire de la plateforme."],
+ preco:["Précommandes : une estimation","Sensor Tower estime entre 4,4 et 4,8 millions de précommandes numériques fin août 2026, environ 77 % sur PS5. Des analystes projetaient aussi plus d’un milliard de dollars de précommandes. Ce ne sont pas des chiffres officiels."]
+};
+const NIGHT=[
+ "00:00 – GTA VI se débloque. Tu appuies sur Jouer.",
+ "01:00 – Premières heures de jeu. Tout est encore à découvrir.",
+ "02:00 – Les joueurs d’Océanie ont déjà fini leurs premières missions.",
+ "03:00 – Les premiers clips circulent sur les réseaux.",
+ "04:00 – Les captures d’écran inondent les fils d’actualité.",
+ "05:00 – Les guides et les astuces commencent à tomber.",
+ "06:00 – Les premières critiques et les moments clés sont partout.",
+ "07:00 – Quelqu’un a déjà tout raconté dans les commentaires.",
+ "08:00 – Tu te réveilles et tu as déjà tout vu. Ce n’est plus pareil."];
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+// countdown vers minuit heure de Paris (UTC+1)
+const T=new Date("2026-11-19T00:00:00+01:00");
+function tick(){let s=Math.max(0,Math.floor((T-Date.now())/1e3));
+ const v={d:Math.floor(s/86400),h:Math.floor(s%86400/3600),m:Math.floor(s%3600/60),s:s%60};
+ for(const k in v)$("#cd-"+k).textContent=String(v[k]).padStart(2,"0")}
+tick();setInterval(tick,1e3);
+// révélations + compteurs + vidéos selon la visibilité
+function count(b){const n=+b.dataset.n,p=b.dataset.pre||"",f=b.dataset.suf||"",dec=n%1?1:0,t0=performance.now();
+ (function f2(t){const k=Math.min(1,(t-t0)/1800),e=1-Math.pow(1-k,3);
+  b.textContent=p+(n*e).toFixed(dec).replace(".",",")+f;if(k<1)requestAnimationFrame(f2)})(t0)}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("on");
+ e.target.querySelectorAll("[data-n]").forEach(b=>{if(!b.done){b.done=1;count(b)}});
+ if(e.target.matches("[data-n]")&&!e.target.done){e.target.done=1;count(e.target)}}}),{threshold:.25});
+$$(".rv,.chart").forEach(el=>io.observe(el));
+const vo=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target.querySelector("video");
+ if(e.isIntersecting){v.play().catch(()=>{})}else v.pause()}),{threshold:.4});
+$$("[data-clip]").forEach(s=>{vo.observe(s);const v=s.querySelector("video");
+ v.addEventListener("error",()=>s.classList.add("nofile"))});
+
+$$("img.logo,.ch img").forEach(i=>{const f=()=>(i.closest(".ch")||i).classList.add("nofile");i.addEventListener("error",f);if(i.complete&&!i.naturalWidth)f()});
+// popups
+const M=$("#modal");
+$$(".stat").forEach(b=>b.onclick=()=>{const i=INFO[b.dataset.info];$("#mt").textContent=i[0];$("#mx").textContent=i[1];M.classList.add("open");$("#mc").focus()});
+const close=()=>M.classList.remove("open");$("#mc").onclick=close;M.onclick=e=>{if(e.target===M)close()};
+// nuit
+const sl=$("#sl");function night(){const h=+sl.value;$("#nt").textContent=String(h).padStart(2,"0")+":00";$("#nx").textContent=NIGHT[h]}
+sl.oninput=night;night();
+// vote
+let c=0;$("#vote").onclick=()=>{c++;$("#vc").textContent=c};
+// plein écran + clavier + progression
+const fs=()=>document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen();
+$("#fs").onclick=fs;
+addEventListener("keydown",e=>{
+ if(e.key==="Escape")close();
+ if(e.key==="f"||e.key==="F")fs();
+ if(e.key==="ArrowDown"||e.key==="PageDown"){e.preventDefault();scrollBy({top:innerHeight})}
+ if(e.key==="ArrowUp"||e.key==="PageUp"){e.preventDefault();scrollBy({top:-innerHeight})}});
+addEventListener("scroll",()=>{const h=document.documentElement;$("#prog").style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+"%"},{passive:true});
+</script>
+</body>
+</html>

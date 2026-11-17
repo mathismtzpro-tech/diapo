@@ -1,0 +1,5 @@
+Dépose ici les visuels officiels (PNG avec fond transparent de préférence) :
+logo.png   -> logo Grand Theft Auto VI (affiché en haut de la page)
+lucia.png  -> personnage Lucia
+jason.png  -> personnage Jason
+Sans ces fichiers, la page affiche un titre texte à la place du logo et masque les portraits.

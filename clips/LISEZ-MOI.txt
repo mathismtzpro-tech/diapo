@@ -1,0 +1,5 @@
+Dépose ici tes extraits de 3 à 10 s, nommés exactement :
+clip1.mp4
+clip2.mp4
+clip3.mp4
+Idéalement en H.264 ou HEVC, 4K ou 8K, sans son nécessaire (la page les joue en muet, en boucle).
