@@ -6,6 +6,7 @@
 <title>GTA VI – Minuit, pas demain</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@500;700&display=swap" rel="stylesheet">
+<link id="ico" rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23000'/%3E%3Ctext x='32' y='44' font-size='34' font-family='Impact,sans-serif' text-anchor='middle' fill='%23ff2d87'%3EVI%3C/text%3E%3C/svg%3E">
 <style>
 :root{--pink:#ff2d87;--orange:#ff8a1f;--cyan:#27e6ff;--violet:#7a2cff;--ink:#000;--soft:#f4ecff;
 --d:'Anton',Impact,'Arial Narrow Bold',sans-serif;--b:'Barlow Condensed','Arial Narrow',sans-serif}
@@ -292,11 +293,12 @@ $$("[data-clip]").forEach(s=>{vo.observe(s);const v=s.querySelector("video");
 
 $$("img.logo,.ch img").forEach(i=>{const f=()=>(i.closest(".ch")||i).classList.add("nofile");i.addEventListener("error",f);if(i.complete&&!i.naturalWidth)f()});
 
-$$("section").forEach(sc=>{if(sc.id==="hero")return;const w=document.createElement("div");w.className="wmk"+(sc.id==="end"?" big":"");
+$$("section[data-clip]").forEach(sc=>{const w=document.createElement("div");w.className="wmk";
  w.innerHTML='<img src="assets/logo.png" alt=""><b>GTA VI</b>';sc.prepend(w);const i=w.querySelector("img");
  const f=()=>w.classList.add("nofile");i.addEventListener("error",f);if(i.complete&&!i.naturalWidth)f()});
 const pc=$("#pc");function sim(){$("#pcv").textContent=pc.value;$("#sim").textContent=(4.6*pc.value/100).toFixed(1).replace(".",",")+" M"}
 pc.oninput=sim;sim();
+const fi=new Image();fi.onload=()=>{$("#ico").href="assets/logo.png"};fi.src="assets/logo.png";
 // popups
 const M=$("#modal");
 $$(".stat").forEach(b=>b.onclick=()=>{const i=INFO[b.dataset.info];$("#mt").textContent=i[0];$("#mx").textContent=i[1];M.classList.add("open");$("#mc").focus()});
